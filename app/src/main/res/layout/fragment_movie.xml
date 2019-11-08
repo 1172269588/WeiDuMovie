@@ -16,12 +16,23 @@
         android:layout_marginTop="@dimen/dp_30"
         android:layout_marginRight="@dimen/dp_27"
         >
+
         <ImageButton
+            android:id="@+id/img_location"
             android:layout_width="@dimen/dp_20"
             android:layout_height="@dimen/dp_24"
-            android:background="@drawable/icon_location"
-            android:id="@+id/img_location"
-            />
+            android:background="@drawable/icon_location" />
+
+        <TextView
+            android:id="@+id/textdw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_toRightOf="@id/img_location"
+            android:text="定位"
+            android:textColor="@android:color/white" />
         <ImageButton
             android:layout_width="@dimen/dp_18"
             android:layout_height="@dimen/dp_18"

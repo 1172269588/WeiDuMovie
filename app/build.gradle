@@ -52,4 +52,7 @@ dependencies {
 
     implementation 'com.jcodecraeer:xrecyclerview:1.5.9'
     implementation 'com.xhb:xbanner:1.5.1'
+    implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation files('libs/AMap_Location_V4.7.2_20190927.jar')
+    implementation fileTree(include: ["*.jar"], dir: "libs")
 }
