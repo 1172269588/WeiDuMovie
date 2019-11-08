@@ -1,17 +1,23 @@
 package com.bawie.weidu_movie.view.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bawie.weidu_movie.R;
 import com.bawie.weidu_movie.presenter.HomeFragPresenter;
 import com.bawie.weidu_movie.view.activity.base.BaseActivity;
 import com.bawie.weidu_movie.view.adapter.HomePageFragmentAdapter;
+import com.bawie.weidu_movie.view.fragment.FragmentCinema;
 import com.bawie.weidu_movie.view.fragment.FragmentMovie;
+import com.bawie.weidu_movie.view.fragment.FragmentMy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +41,8 @@ public class HomeActivity extends BaseActivity<HomeFragPresenter> {
     RadioButton rbMainMy;
     @BindView(R.id.rg_main_radioGroup)
     RadioGroup rgMainRadioGroup;
+    Bitmap b = null;
+
     private Unbinder bind;
     private List<Fragment> fragments;
     private HomePageFragmentAdapter homePageFragmentAdapter;
@@ -55,34 +63,25 @@ public class HomeActivity extends BaseActivity<HomeFragPresenter> {
 
     @Override
     protected void initData() {
+        rbMainMovie.setButtonDrawable(new BitmapDrawable(b));
+        rbMainCinema.setButtonDrawable(new BitmapDrawable(b));
+        rbMainMy.setButtonDrawable(new BitmapDrawable(b));
         fragments = new ArrayList<>();
         fragments.add(new FragmentMovie());
+        fragments.add(new FragmentCinema());
+        fragments.add(new FragmentMy());
         homePageFragmentAdapter = new HomePageFragmentAdapter(getSupportFragmentManager(), fragments);
         vpMainViewPager.setAdapter(homePageFragmentAdapter);
-        vpMainViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        vpMainViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
+            @NonNull
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+            public Fragment getItem(int position) {
+                return fragments.get(position);
             }
 
             @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        rgMainRadioGroup.check(R.id.rb_main_movie);
-                        break;
-                    case 1:
-                        rgMainRadioGroup.check(R.id.rb_main_cinema);
-                        break;
-                    case 2:
-                        rgMainRadioGroup.check(R.id.rb_main_my);
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public int getCount() {
+                return fragments.size();
             }
         });
 
