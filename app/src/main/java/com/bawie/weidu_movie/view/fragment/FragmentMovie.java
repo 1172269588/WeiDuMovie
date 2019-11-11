@@ -133,6 +133,12 @@ public class FragmentMovie extends Fragment implements IContractView.iMovieView,
             }
 
         });
+        tvMovieMore1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         return inflate;
 
     }
