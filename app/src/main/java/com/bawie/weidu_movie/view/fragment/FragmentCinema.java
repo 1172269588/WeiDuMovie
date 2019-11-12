@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -86,9 +87,12 @@ public class FragmentCinema extends Fragment {
         list = new ArrayList<>();
         list.add(new Fragment_Tui());
         list.add(new Fragment_Tui());
+        list.add(new Fragment_Tui());
         strings = new ArrayList<>();
         strings.add("推荐影院");
         strings.add("附近影院");
+        strings.add("北京");
+
         vp.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @NonNull
             @Override
@@ -98,11 +102,20 @@ public class FragmentCinema extends Fragment {
 
             @Override
             public int getCount() {
-                return strings.size();
+                return list.size();
+            }
+
+            @Nullable
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return strings.get(position);
             }
         });
+        teb_layout.setupWithViewPager(vp);
+
         return inflate;
     }
+
     public void MyLocation(final Context context) {
         mlocationClient = new AMapLocationClient(getActivity());
         mLocationOption = new AMapLocationClientOption();

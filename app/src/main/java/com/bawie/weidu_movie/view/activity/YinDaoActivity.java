@@ -16,7 +16,7 @@ import com.bawie.weidu_movie.R;
 
 public class YinDaoActivity extends AppCompatActivity {
     private RelativeLayout yindaoye;
-    private int time=6;
+    private int time=3;
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {

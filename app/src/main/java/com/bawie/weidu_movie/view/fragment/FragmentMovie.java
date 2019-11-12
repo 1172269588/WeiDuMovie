@@ -39,6 +39,7 @@ import com.bawie.weidu_movie.model.bean.ReserveBean;
 import com.bawie.weidu_movie.model.bean.UpComingBean;
 import com.bawie.weidu_movie.presenter.MovieHomePresenter;
 import com.bawie.weidu_movie.view.activity.login.MovieActivity;
+import com.bawie.weidu_movie.view.activity.shouye.GengDuoActivity;
 import com.bawie.weidu_movie.view.adapter.RecyclerUpComingAdapter;
 import com.bawie.weidu_movie.view.adapter.RecyclerViewHotAdapter;
 import com.bawie.weidu_movie.view.adapter.RecyclerViewIsHotAdapter;
@@ -112,6 +113,7 @@ public class FragmentMovie extends Fragment implements IContractView.iMovieView,
         unbinder = ButterKnife.bind(this, inflate);
         homePresenter = new MovieHomePresenter();
         homePresenter.attachView(this);
+
         //首页Banner
         homePresenter.movieBenner();
         //正在热映
@@ -120,6 +122,13 @@ public class FragmentMovie extends Fragment implements IContractView.iMovieView,
         homePresenter.upComingMovie(page, count);
         //热门电影
         homePresenter.hotMovie(page, count);
+        //点击更多跳到更多页面
+        tvMovieMore1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), GengDuoActivity.class));
+            }
+        });
         imgLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,12 +141,6 @@ public class FragmentMovie extends Fragment implements IContractView.iMovieView,
                 }
             }
 
-        });
-        tvMovieMore1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
         });
         return inflate;
 
