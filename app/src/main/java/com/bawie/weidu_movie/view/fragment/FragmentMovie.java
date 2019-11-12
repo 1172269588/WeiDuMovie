@@ -38,6 +38,7 @@ import com.bawie.weidu_movie.model.bean.MovieFragBannerBean;
 import com.bawie.weidu_movie.model.bean.ReserveBean;
 import com.bawie.weidu_movie.model.bean.UpComingBean;
 import com.bawie.weidu_movie.presenter.MovieHomePresenter;
+import com.bawie.weidu_movie.view.activity.SearchActivity;
 import com.bawie.weidu_movie.view.activity.login.MovieActivity;
 import com.bawie.weidu_movie.view.adapter.RecyclerUpComingAdapter;
 import com.bawie.weidu_movie.view.adapter.RecyclerViewHotAdapter;
@@ -322,6 +323,7 @@ public class FragmentMovie extends Fragment implements IContractView.iMovieView,
             case R.id.img_location:
                 break;
             case R.id.img_search:
+                startActivity(new Intent(getActivity(), SearchActivity.class));
                 break;
             case R.id.tv_movie_more1:
                 break;

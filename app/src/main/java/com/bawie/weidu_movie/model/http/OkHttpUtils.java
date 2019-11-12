@@ -1,10 +1,13 @@
 package com.bawie.weidu_movie.model.http;
 
 import com.bawie.weidu_movie.model.api.IApi;
+import com.bawie.weidu_movie.model.bean.CodeBean;
 import com.bawie.weidu_movie.model.bean.HotMovieBean;
 import com.bawie.weidu_movie.model.bean.IsHotMovieBean;
 import com.bawie.weidu_movie.model.bean.LoginBean;
 import com.bawie.weidu_movie.model.bean.MovieFragBannerBean;
+import com.bawie.weidu_movie.model.bean.RegisterBean;
+import com.bawie.weidu_movie.model.bean.SearchBean;
 import com.bawie.weidu_movie.model.bean.UpComingBean;
 import com.bawie.weidu_movie.model.url.CantantUrl;
 import com.google.gson.Gson;
@@ -192,6 +195,87 @@ public class OkHttpUtils<B> {
 
                   }
               });
+    }
+    //注册
+    public void movieRegister(IOkCallBack<RegisterBean> registerBeanIOkCallBack, Class<B> registerBeanClass, String name, String encrypt, String email, String code) {
+        Observable<RegisterBean> movieRegister = iApi.movieRegister(name, email, encrypt, code);
+        movieRegister.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<RegisterBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(RegisterBean registerBean) {
+                          registerBeanIOkCallBack.callSuccess(registerBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    //发送验证码
+    public void sendCode(IOkCallBack<CodeBean> codeBeanIOkCallBack, Class<B> codeBeanClass, String trim) {
+        Observable<CodeBean> codeBeanObservable = iApi.sendCode(trim);
+        codeBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CodeBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CodeBean codeBean) {
+                            codeBeanIOkCallBack.callSuccess(codeBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public void search(IOkCallBack<SearchBean> searchBeanIOkCallBack, Class<B> searchBeanClass, String keyword, int page, int count) {
+        Observable<SearchBean> searchBeanObservable = iApi.movieSearch(keyword, page, count);
+        searchBeanObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<SearchBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(SearchBean searchBean) {
+                        searchBeanIOkCallBack.callSuccess(searchBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 

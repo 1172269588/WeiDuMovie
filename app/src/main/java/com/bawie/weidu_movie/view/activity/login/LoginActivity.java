@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bawie.weidu_movie.R;
 import com.bawie.weidu_movie.model.bean.LoginBean;
+import com.bawie.weidu_movie.model.bean.WXLoginBean;
 import com.bawie.weidu_movie.model.entry.EncryptUtil;
 import com.bawie.weidu_movie.presenter.LoginPresenter;
 import com.bawie.weidu_movie.view.activity.HomeActivity;
@@ -87,6 +88,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ICont
         }else {
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void loginWXSuccess(WXLoginBean wxLoginBean) {
+
     }
 
     @OnClick({R.id.btn_forgetPwd, R.id.tv_register, R.id.btn_login, R.id.btn_VX})

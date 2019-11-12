@@ -28,6 +28,7 @@
             android:layout_height="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_marginLeft="@dimen/dp_44"
+            android:background="@drawable/radioselect"
             android:button="@null"
             android:checked="true"/>
 
@@ -37,6 +38,7 @@
             android:layout_height="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_marginLeft="@dimen/dp_106"
+            android:background="@drawable/radioselect1"
             android:button="@null"/>
 
         <RadioButton
@@ -45,6 +47,7 @@
             android:layout_height="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_20"
             android:layout_marginLeft="@dimen/dp_90"
+            android:background="@drawable/radioselect2"
             android:button="@null"/>
 
     </RadioGroup>
