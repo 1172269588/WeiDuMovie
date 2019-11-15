@@ -40,7 +40,7 @@
                 android:background="@drawable/icon_search"
                 />
         </RelativeLayout>
-        <com.google.android.material.tabs.TabLayout
+        <com.androidkun.xtablayout.XTabLayout
             android:id="@+id/teb_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -48,9 +48,7 @@
             android:layout_marginRight="@dimen/dp_30"
             app:tabMode="fixed"
             app:tabGravity="fill"
-            app:tabTextColor="#ffffff"
-            ></com.google.android.material.tabs.TabLayout>
-
+            app:tabTextColor="#ffffff"></com.androidkun.xtablayout.XTabLayout>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"

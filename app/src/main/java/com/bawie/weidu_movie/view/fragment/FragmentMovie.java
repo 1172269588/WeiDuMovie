@@ -130,6 +130,18 @@ public class FragmentMovie extends Fragment implements IContractView.iMovieView,
                 startActivity(new Intent(getActivity(), GengDuoActivity.class));
             }
         });
+        tvMovieMore2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), GengDuoActivity.class));
+            }
+        });
+        tvMovieMore3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), GengDuoActivity.class));
+            }
+        });
         imgLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

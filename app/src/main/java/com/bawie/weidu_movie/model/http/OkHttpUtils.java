@@ -1,7 +1,9 @@
 package com.bawie.weidu_movie.model.http;
 
 import com.bawie.weidu_movie.model.api.IApi;
+import com.bawie.weidu_movie.model.bean.CinemaDetailsBean;
 import com.bawie.weidu_movie.model.bean.CodeBean;
+import com.bawie.weidu_movie.model.bean.FindAllCinemaCommentBean;
 import com.bawie.weidu_movie.model.bean.HotMovieBean;
 import com.bawie.weidu_movie.model.bean.IsHotMovieBean;
 import com.bawie.weidu_movie.model.bean.LoginBean;
@@ -250,7 +252,61 @@ public class OkHttpUtils<B> {
                     }
                 });
     }
+    //查询电影信息明细
+    public void cinemaInfo(final IOkCallBack iOkCallBack, Class<B> bean, int userId,String sessionId,int cinemaId) {
+        Observable<CinemaDetailsBean> cinemaInfo = iApi.cinemaInfo(userId, sessionId, cinemaId);
+        cinemaInfo.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<CinemaDetailsBean>() {
 
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CinemaDetailsBean cinemaDetailsBean) {
+                        iOkCallBack.callSuccess(cinemaDetailsBean);
+                    }
+                });
+    }
+    //查询影院用户评论列表
+    public void findAllCinemaComment(final IOkCallBack iOkCallBack, Class<B> bean, int userId, String sessionId,int cinemaId, int page, int count) {
+        Observable<FindAllCinemaCommentBean> allCinemaComment = iApi.findAllCinemaComment(userId, sessionId, cinemaId, page, count);
+        allCinemaComment.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FindAllCinemaCommentBean>() {
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(FindAllCinemaCommentBean findAllCinemaCommentBean) {
+                        iOkCallBack.callSuccess(findAllCinemaCommentBean);
+                    }
+                });
+    }
     public void search(IOkCallBack<SearchBean> searchBeanIOkCallBack, Class<B> searchBeanClass, String keyword, int page, int count) {
         Observable<SearchBean> searchBeanObservable = iApi.movieSearch(keyword, page, count);
         searchBeanObservable.subscribeOn(Schedulers.io())

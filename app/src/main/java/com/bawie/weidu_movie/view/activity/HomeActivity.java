@@ -1,113 +1,115 @@
 package com.bawie.weidu_movie.view.activity;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
+import android.widget.TextView;
 
 import com.bawie.weidu_movie.R;
-import com.bawie.weidu_movie.presenter.HomeFragPresenter;
-import com.bawie.weidu_movie.view.activity.base.BaseActivity;
-import com.bawie.weidu_movie.view.adapter.HomePageFragmentAdapter;
 import com.bawie.weidu_movie.view.fragment.FragmentCinema;
 import com.bawie.weidu_movie.view.fragment.FragmentMovie;
 import com.bawie.weidu_movie.view.fragment.FragmentMy;
 
-import java.util.ArrayList;
-import java.util.List;
+public class HomeActivity extends AppCompatActivity {
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+    private FrameLayout frame;
+    private RadioGroup radio_group;
+    private TextView text_dianying;
+    private TextView text_yingyuan;
+    private TextView text_wode;
+    private RadioButton radio_dianying;
+    private RadioButton radio_yingyuan;
+    private RadioButton radio_wode;
+    private FragmentMovie fragmentMovie;
 
-/**
- * 作者： 姓名
- * 日期： 2019/11/6 14:13
- */
-public class HomeActivity extends BaseActivity<HomeFragPresenter> {
-    @BindView(R.id.vp_main_viewPager)
-    ViewPager vpMainViewPager;
-    @BindView(R.id.rb_main_movie)
-    RadioButton rbMainMovie;
-    @BindView(R.id.rb_main_cinema)
-    RadioButton rbMainCinema;
-    @BindView(R.id.rb_main_my)
-    RadioButton rbMainMy;
-    @BindView(R.id.rg_main_radioGroup)
-    RadioGroup rgMainRadioGroup;
-    Bitmap b = null;
+    private FragmentManager supportFragmentManager;
+    private FragmentCinema fragmentCinema;
+    private FragmentMy fragmentMy;
 
-    private Unbinder bind;
-    private List<Fragment> fragments;
-    private HomePageFragmentAdapter homePageFragmentAdapter;
-    @Override
-    protected int bindLayout() {
-        return R.layout.activity_home;
-    }
 
     @Override
-    protected void initView() {
-        bind = ButterKnife.bind(this);
-    }
-
-    @Override
-    protected HomeFragPresenter setPresenter() {
-        return new HomeFragPresenter();
-    }
-
-    @Override
-    protected void initData() {
-        rbMainMovie.setButtonDrawable(new BitmapDrawable(b));
-        rbMainCinema.setButtonDrawable(new BitmapDrawable(b));
-        rbMainMy.setButtonDrawable(new BitmapDrawable(b));
-        fragments = new ArrayList<>();
-        fragments.add(new FragmentMovie());
-        fragments.add(new FragmentCinema());
-        fragments.add(new FragmentMy());
-        homePageFragmentAdapter = new HomePageFragmentAdapter(getSupportFragmentManager(), fragments);
-        vpMainViewPager.setAdapter(homePageFragmentAdapter);
-        vpMainViewPager.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
-            @NonNull
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_home);
+        frame = findViewById(R.id.frame);
+        text_dianying = findViewById(R.id.text_dianying);
+        text_yingyuan = findViewById(R.id.text_yingyuan);
+        text_wode = findViewById(R.id.text_wode);
+        radio_dianying = findViewById(R.id.radio_dianying);
+        radio_yingyuan = findViewById(R.id.radio_yingyuan);
+        radio_wode = findViewById(R.id.radio_wode);
+        radio_group = findViewById(R.id.radio_group);
+        fragmentMovie = new FragmentMovie();
+        fragmentCinema = new FragmentCinema();
+        fragmentMy = new FragmentMy();
+        supportFragmentManager = getSupportFragmentManager();
+        Bitmap a=null;
+        radio_dianying.setButtonDrawable(new BitmapDrawable(a));
+        radio_yingyuan.setButtonDrawable(new BitmapDrawable(a));
+        radio_wode.setButtonDrawable(new BitmapDrawable(a));
+        supportFragmentManager.beginTransaction()
+                .add(R.id.frame,fragmentMovie)
+                .add(R.id.frame,fragmentCinema)
+                .add(R.id.frame,fragmentMy)
+                .show(fragmentMovie)
+                .hide(fragmentCinema)
+                .hide(fragmentMy)
+                .commit();
+        radio_dianying.setOnClickListener(new View.OnClickListener() {
             @Override
-            public Fragment getItem(int position) {
-                return fragments.get(position);
-            }
-
-            @Override
-            public int getCount() {
-                return fragments.size();
+            public void onClick(View view) {
+                text_dianying.setVisibility(View.VISIBLE);
+                text_yingyuan.setVisibility(View.INVISIBLE);
+                text_wode.setVisibility(View.INVISIBLE);
+                radio_dianying.setChecked(true);
+                radio_yingyuan.setChecked(false);
+                radio_wode.setChecked(false);
+                supportFragmentManager.beginTransaction()
+                        .show(fragmentMovie)
+                        .hide(fragmentCinema)
+                        .hide(fragmentMy)
+                        .commit();
             }
         });
-
-        rgMainRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radio_yingyuan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.rb_main_movie:
-                        vpMainViewPager.setCurrentItem(0);
-                        break;
-
-                    case R.id.rb_main_cinema:
-                        vpMainViewPager.setCurrentItem(1);
-                        break;
-
-                    case R.id.rb_main_my:
-                        vpMainViewPager.setCurrentItem(2);
-                        break;
-                }
+            public void onClick(View view) {
+                text_yingyuan.setVisibility(View.VISIBLE);
+                text_dianying.setVisibility(View.INVISIBLE);
+                text_wode.setVisibility(View.INVISIBLE);
+                radio_yingyuan.setChecked(true);
+                radio_dianying.setChecked(false);
+                radio_wode.setChecked(false);
+                supportFragmentManager.beginTransaction()
+                        .show(fragmentCinema)
+                        .hide(fragmentMovie)
+                        .hide(fragmentMy)
+                        .commit();
             }
         });
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        bind.unbind();
+        radio_wode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text_wode.setVisibility(View.VISIBLE);
+                text_yingyuan.setVisibility(View.INVISIBLE);
+                text_dianying.setVisibility(View.INVISIBLE);
+                radio_wode.setChecked(true);
+                radio_yingyuan.setChecked(false);
+                radio_dianying.setChecked(false);
+                supportFragmentManager.beginTransaction()
+                        .show(fragmentMy)
+                        .hide(fragmentMovie)
+                        .hide(fragmentCinema)
+                        .commit();
+            }
+        });
     }
 }

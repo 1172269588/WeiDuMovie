@@ -60,6 +60,7 @@
         <ImageView
             android:layout_width="@dimen/dp_8"
             android:layout_height="@dimen/dp_12"
+            android:id="@+id/frag_iv_my"
             android:background="@drawable/shapeblack"
             android:layout_marginTop="@dimen/dp_39"
             android:layout_marginLeft="@dimen/dp_143"

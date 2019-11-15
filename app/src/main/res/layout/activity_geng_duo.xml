@@ -35,8 +35,7 @@
         android:layout_height="@dimen/dp_38"
         android:background="#1c2243"
         android:layout_marginTop="@dimen/dp_20">
-
-        <com.google.android.material.tabs.TabLayout
+        <com.androidkun.xtablayout.XTabLayout
             android:id="@+id/tab_gengduo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -45,7 +44,7 @@
             app:tabMode="fixed"
             app:tabPaddingTop="@dimen/dp_9"
             android:layout_marginLeft="@dimen/dp_48"
-            android:layout_marginRight="@dimen/dp_48"></com.google.android.material.tabs.TabLayout>
+            android:layout_marginRight="@dimen/dp_48"></com.androidkun.xtablayout.XTabLayout>
 
 
     </LinearLayout>

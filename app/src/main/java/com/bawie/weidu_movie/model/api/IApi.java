@@ -1,6 +1,8 @@
 package com.bawie.weidu_movie.model.api;
 
+import com.bawie.weidu_movie.model.bean.CinemaDetailsBean;
 import com.bawie.weidu_movie.model.bean.CodeBean;
+import com.bawie.weidu_movie.model.bean.FindAllCinemaCommentBean;
 import com.bawie.weidu_movie.model.bean.HotMovieBean;
 import com.bawie.weidu_movie.model.bean.IsHotMovieBean;
 import com.bawie.weidu_movie.model.bean.LoginBean;
@@ -15,6 +17,7 @@ import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -68,5 +71,19 @@ public interface IApi {
     Observable<SearchBean> movieSearch(@Query("keyword") String keyword,
                                           @Query("page") int page,
                                           @Query("count") int count);
+
+    //查询电影信息明细
+    @GET(CantantUrl.CinemaInfo_URL)
+    Observable<CinemaDetailsBean> cinemaInfo(@Header("userId") int userId,
+                                             @Header("sessionId") String sessionId,
+                                             @Query("cinemaId") int cinemaId);
+
+    //查询影院用户评论列表
+    @GET(CantantUrl.findAllCinemaComment_URL)
+    Observable<FindAllCinemaCommentBean> findAllCinemaComment(@Header("userId") int userId,
+                                                              @Header("sessionId") String sessionId,
+                                                              @Query("cinemaId") int cinemaId,
+                                                              @Query("page") int page,
+                                                              @Query("count") int count);
 
 }

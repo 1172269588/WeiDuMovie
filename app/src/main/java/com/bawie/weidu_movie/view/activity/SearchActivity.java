@@ -106,6 +106,6 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements ICo
 
     @OnClick(R.id.iv_back)
     public void onClick() {
-        startActivity(new Intent(SearchActivity.this, MovieActivity.class));
+        startActivity(new Intent(SearchActivity.this, HomeActivity.class));
     }
 }

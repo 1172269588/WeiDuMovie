@@ -1,6 +1,8 @@
 package com.bawie.weidu_movie.view.interfaces;
 
+import com.bawie.weidu_movie.model.bean.CinemaDetailsBean;
 import com.bawie.weidu_movie.model.bean.CodeBean;
+import com.bawie.weidu_movie.model.bean.FindAllCinemaCommentBean;
 import com.bawie.weidu_movie.model.bean.HotMovieBean;
 import com.bawie.weidu_movie.model.bean.IsHotMovieBean;
 import com.bawie.weidu_movie.model.bean.LoginBean;
@@ -43,4 +45,14 @@ public interface IContractView {
     interface iMovieSearch extends IBaseView{
          void searchSuccess(SearchBean searchBean);
       }
+    //根据关键字查询电影信息
+    interface ICinemaDetailsView extends IBaseView{
+        void cinemaDetailsSuccess(CinemaDetailsBean cinemaDetailsBean);
+        void cinemaDetailsError(String msg);
+    }
+    //查询影院用户评论列表
+    interface IAllCinemaCommentView extends IBaseView{
+        void allCinemaCommentSuccess(FindAllCinemaCommentBean findAllCinemaCommentBean);
+        void allCinemaCommentError(String msg);
+    }
 }

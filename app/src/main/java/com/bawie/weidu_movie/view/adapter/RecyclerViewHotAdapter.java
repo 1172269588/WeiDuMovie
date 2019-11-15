@@ -1,6 +1,7 @@
 package com.bawie.weidu_movie.view.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawie.weidu_movie.R;
 import com.bawie.weidu_movie.model.bean.HotMovieBean;
+import com.bawie.weidu_movie.view.activity.shouye.GengDuoActivity;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
@@ -47,7 +49,12 @@ public class RecyclerViewHotAdapter extends RecyclerView.Adapter {
                 .error(R.mipmap.ic_launcher)
                 .into(viewHolder.iv_imageUrl);
         viewHolder.tv_score.setText(datas.get(position).getScore()+"分");
-
+        viewHolder.iv_imageUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(new Intent(context,GengDuoActivity.class));
+            }
+        });
 
     }
 

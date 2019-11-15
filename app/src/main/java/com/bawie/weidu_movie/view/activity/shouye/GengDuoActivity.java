@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 
 
+import com.androidkun.xtablayout.XTabLayout;
 import com.bawie.weidu_movie.R;
 import com.bawie.weidu_movie.view.activity.HomeActivity;
 import com.bawie.weidu_movie.view.fragment.FragmentMovie;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class GengDuoActivity extends AppCompatActivity {
     private ImageView fan;
-    private TabLayout tab_gengduo;
+    private XTabLayout tab_gengduo;
     private ViewPager vp;
     private List<String>strings;
     private List<Fragment> list;

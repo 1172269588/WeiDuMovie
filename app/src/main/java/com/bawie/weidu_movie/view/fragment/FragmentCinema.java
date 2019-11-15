@@ -31,7 +31,10 @@ import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+import com.androidkun.xtablayout.XTabLayout;
 import com.bawie.weidu_movie.R;
+import com.bawie.weidu_movie.view.fragment.yingyuanfragment.Fragment_Ding;
+import com.bawie.weidu_movie.view.fragment.yingyuanfragment.Fragment_Fu;
 import com.bawie.weidu_movie.view.fragment.yingyuanfragment.Fragment_Tui;
 import com.google.android.material.tabs.TabLayout;
 
@@ -49,7 +52,7 @@ public class FragmentCinema extends Fragment {
     @BindView(R.id.textdw)
     TextView textdw;
     @BindView(R.id.teb_layout)
-    TabLayout teb_layout;
+    XTabLayout teb_layout;
     @BindView(R.id.vp)
     ViewPager vp;
     private ArrayList<Fragment> list;
@@ -86,8 +89,8 @@ public class FragmentCinema extends Fragment {
         });
         list = new ArrayList<>();
         list.add(new Fragment_Tui());
-        list.add(new Fragment_Tui());
-        list.add(new Fragment_Tui());
+        list.add(new Fragment_Fu());
+        list.add(new Fragment_Ding());
         strings = new ArrayList<>();
         strings.add("推荐影院");
         strings.add("附近影院");

@@ -33,12 +33,12 @@ public class Fragment_Fu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         inflate = inflater.inflate(R.layout.fragment_fragment__fu, container, false);
-        recy_view = inflate.findViewById(R.id.recy_view);
-        fuYingYuanPresenter = new FuYingYuanPresenter(new MyCall());
-        yingYuanAdapter = new YingYuanAdapter(getActivity());
-        recy_view.setAdapter(yingYuanAdapter);
-        recy_view.setLayoutManager(new LinearLayoutManager(getActivity()));
-        fuYingYuanPresenter.getData("2","3");
+        //recy_view = inflate.findViewById(R.id.recy_view);
+        //fuYingYuanPresenter = new FuYingYuanPresenter(new MyCall());
+        //yingYuanAdapter = new YingYuanAdapter(getActivity());
+        //recy_view.setAdapter(yingYuanAdapter);
+        //recy_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //fuYingYuanPresenter.getData("1","5");
 
 
         return inflate;

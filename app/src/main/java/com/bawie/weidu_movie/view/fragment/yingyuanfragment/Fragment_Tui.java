@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,12 @@ public class Fragment_Tui extends Fragment {
     private View inflate;
     private TuiYingYuanPresenter tuiYingYuanPresenter;
     private YingYuanAdapter yingYuanAdapter;
+    private LinearLayoutManager linearLayoutManager;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,7 +43,8 @@ public class Fragment_Tui extends Fragment {
         tuiYingYuanPresenter = new TuiYingYuanPresenter(new MyCall());
         yingYuanAdapter = new YingYuanAdapter(getActivity());
         recy_view.setAdapter(yingYuanAdapter);
-        recy_view.setLayoutManager(new LinearLayoutManager(getActivity()));
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        recy_view.setLayoutManager(linearLayoutManager);
         tuiYingYuanPresenter.getData("1","5");
 
         return inflate;
